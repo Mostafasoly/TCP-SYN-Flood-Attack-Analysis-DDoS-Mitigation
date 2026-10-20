@@ -1,0 +1,92 @@
+# TCP SYN Flood Attack Analysis & DDoS Mitigation
+
+## Project Overview
+
+This project presents a scenario-based investigation of suspicious network traffic targeting a travel agency's web server. The objective is to analyze packet logs, identify indicators of a potential TCP SYN Flood attack, assess service availability impact, and recommend defensive measures.
+
+## Objectives
+
+- Understand the TCP Three-Way Handshake.
+- Analyze suspicious TCP SYN requests.
+- Identify indicators of a potential Denial-of-Service (DoS) attack.
+- Evaluate whether the observed traffic could indicate a Distributed Denial-of-Service (DDoS) attack.
+- Understand IP spoofing and its limitations as an attribution indicator.
+- Develop an incident response and mitigation plan.
+
+## Scenario
+
+The company's sales webpage became unavailable, and monitoring generated an alert about the web server. Packet logs showed a high volume of TCP SYN requests targeting port 443.
+
+The abnormal traffic raised concerns that the server's connection-handling resources were being exhausted, preventing legitimate users from accessing the website.
+
+## Technical Analysis
+
+### 1. TCP Three-Way Handshake
+
+1. **SYN:** The client requests a TCP connection.
+2. **SYN-ACK:** The server acknowledges the request and responds.
+3. **ACK:** The client acknowledges the server's response, establishing the connection.
+
+### 2. Potential TCP SYN Flood
+
+A SYN Flood attempts to overwhelm a server by generating excessive TCP connection requests. When the server maintains too many incomplete connections, resources may become exhausted and legitimate connection requests may fail.
+
+### 3. DoS vs. DDoS
+
+- **DoS:** Denial of Service caused by an attack originating from a single source or system.
+- **DDoS:** Distributed Denial of Service involving multiple distributed attacking systems.
+
+Multiple source IP addresses may indicate distributed traffic, but do not independently prove a DDoS attack. Further investigation is required.
+
+### 4. IP Spoofing
+
+IP spoofing involves forging the source IP address in network packets. It may be used in SYN Flood attacks to obscure the sender's identity or complicate filtering.
+
+The available packet logs do not conclusively establish that IP spoofing occurred.
+
+## Impact Assessment
+
+Potential consequences include:
+
+- Website unavailability or degraded performance.
+- Exhaustion of server connection resources.
+- Interrupted access to sales information for employees.
+- Reduced customer service availability and potential business disruption.
+
+## Recommended Mitigation
+
+1. Enable SYN cookies where supported.
+2. Configure SYN Flood protection on the server or network security appliance.
+3. Apply appropriate rate limiting and traffic filtering.
+4. Review firewall, server, and network traffic logs.
+5. Coordinate with the ISP or a DDoS protection provider.
+6. Monitor traffic patterns and document incident response actions.
+7. Test mitigations and verify that legitimate users can access the website.
+
+## Incident Response Plan
+
+1. **Detection:** Identify abnormal traffic and service availability alerts.
+2. **Analysis:** Examine packet logs, connection patterns, and relevant timestamps.
+3. **Containment:** Apply appropriate network-level protections and filtering.
+4. **Recovery:** Restore service safely and verify normal operation.
+5. **Lessons Learned:** Document findings and improve monitoring and defenses.
+
+## Conclusion
+
+The observed traffic is consistent with a potential TCP SYN Flood attack. A DDoS attack and IP spoofing are possible, but additional evidence is needed to confirm either conclusion.
+
+This project demonstrates foundational skills in network traffic analysis, threat identification, security incident reporting, and defensive security planning.
+
+## Disclaimer
+
+This is an educational, scenario-based analysis using training logs. It does not claim to document a confirmed real-world attack. All recommendations are intended for authorized defensive security operations.
+
+## Skills Demonstrated
+
+- TCP/IP fundamentals
+- Packet log analysis
+- DoS and DDoS concepts
+- IP spoofing awareness
+- Incident response
+- Firewall and network defense
+- Technical documentation
